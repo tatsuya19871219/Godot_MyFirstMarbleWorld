@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dee2jf5dbh3m4"]
+
+[ext_resource type="Script" path="res://rails/scripts/rail.gd" id="1_ovflt"]
+
+[node name="DockableDummy" type="Node3D"]
+script = ExtResource("1_ovflt")
+metadata/_edit_group_ = true
+
+[node name="MarkerA" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.06038, 0, 0)
+
+[node name="MarkerB" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83453, 0, 0)

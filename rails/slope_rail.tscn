@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbr5twvn8yehg"]
+
+[ext_resource type="Script" path="res://rails/scripts/slope_rail.gd" id="1_cw76f"]
+[ext_resource type="Material" uid="uid://ba4gi4b4lpxtr" path="res://materials/rail.tres" id="2_fahpi"]
+
+[node name="SlopeRail" type="Node3D"]
+script = ExtResource("1_cw76f")
+extra_material = ExtResource("2_fahpi")
+metadata/_edit_group_ = true

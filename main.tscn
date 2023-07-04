@@ -1,0 +1,464 @@
+[gd_scene load_steps=24 format=3 uid="uid://c43e3m3vrgtxc"]
+
+[ext_resource type="PackedScene" uid="uid://c8tn0452eyuig" path="res://marble_course.tscn" id="1_dyowt"]
+[ext_resource type="Script" path="res://main.gd" id="1_yhks2"]
+[ext_resource type="PackedScene" uid="uid://b08rd8y4x0est" path="res://terrain/ground.tscn" id="3_1qd24"]
+[ext_resource type="Material" uid="uid://cu8021oxm1yxw" path="res://materials/wall.tres" id="3_4w674"]
+[ext_resource type="PackedScene" uid="uid://c0m84r6oc28a6" path="res://terrain/support.tscn" id="4_8i8at"]
+[ext_resource type="PackedScene" uid="uid://dayc6esqahf4" path="res://terrain/Star.glb" id="5_ys4a7"]
+[ext_resource type="PackedScene" uid="uid://bksic0rfo81sy" path="res://terrain/marble_stand.tscn" id="6_8ljhu"]
+[ext_resource type="Script" path="res://tracking_camera.gd" id="7_fdsf5"]
+[ext_resource type="LabelSettings" uid="uid://dyclkxqtcqkrw" path="res://gui_label_settings.tres" id="7_fjvcp"]
+[ext_resource type="Script" path="res://fps_label.gd" id="7_nlpe8"]
+[ext_resource type="Script" path="res://timer_label.gd" id="8_6xbf2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3w61t"]
+material = ExtResource("3_4w674")
+size = Vector3(400, 200, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3dudh"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bj203"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 20.0
+dof_blur_near_distance = 25.0
+dof_blur_amount = 0.05
+
+[sub_resource type="Environment" id="Environment_w10tm"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kq7ge"]
+viewport_path = NodePath("MarbleCourseContainer/Cameras/StartCamViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_isf1c"]
+viewport_path = NodePath("MarbleCourseContainer/Cameras/ElevatorCamViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vpwi4"]
+viewport_path = NodePath("MarbleCourseContainer/Cameras/BallTrackingWideViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f3la1"]
+viewport_path = NodePath("MarbleCourseContainer/Cameras/BallTrackingViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qmetp"]
+viewport_path = NodePath("MarbleCourseContainer/Cameras/BallTrackingViewport_Elevator")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4entp"]
+viewport_path = NodePath("MarbleCourseContainer/Cameras/TopBirdCamViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hbv4p"]
+viewport_path = NodePath("MarbleCourseContainer/Cameras/FrontBirdCamViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ug8bw"]
+font_size = 24
+
+[node name="Main" type="Node"]
+script = ExtResource("1_yhks2")
+base_colors = Array[Color]([Color(1, 0.945098, 0, 1), Color(0, 0.6, 0.266667, 1), Color(0, 0.407843, 0.717647, 1), Color(0.113725, 0.12549, 0.533333, 1), Color(0.592157, 0.027451, 0.513726, 1), Color(0.901961, 0, 0.0705882, 1), Color(0.952941, 0.596078, 0, 1)])
+
+[node name="Chamber" type="Node3D" parent="."]
+
+[node name="Ground" parent="Chamber" instance=ExtResource("3_1qd24")]
+
+[node name="Wall" type="MeshInstance3D" parent="Chamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, -100)
+mesh = SubResource("BoxMesh_3w61t")
+
+[node name="Wall4" type="MeshInstance3D" parent="Chamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 75)
+mesh = SubResource("BoxMesh_3w61t")
+
+[node name="Wall2" type="MeshInstance3D" parent="Chamber"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -75, 50, 0)
+mesh = SubResource("BoxMesh_3w61t")
+
+[node name="Wall3" type="MeshInstance3D" parent="Chamber"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 75, 50, 0)
+mesh = SubResource("BoxMesh_3w61t")
+
+[node name="MarbleCourseContainer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.5339)
+
+[node name="MarbleCourse" parent="MarbleCourseContainer" instance=ExtResource("1_dyowt")]
+
+[node name="Structures" type="Node3D" parent="MarbleCourseContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.7601)
+
+[node name="Support" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59387, 0, 36.7377)
+height = 1.6
+
+[node name="Support16" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(0.999985, 0, -0.00546285, 0, 1, 0, 0.00546285, 0, 0.999985, 13.6758, 0, 37.2136)
+height = 15.75
+
+[node name="Support18" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(0.999985, 0, -0.00546285, 0, 1, 0, 0.00546285, 0, 0.999985, 8.74385, 0, 20.4551)
+height = 17.5
+angle = -0.524
+
+[node name="Support2" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 36.7377)
+height = 1.5
+
+[node name="Support3" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.65, 0, 31.7377)
+height = 39.5
+
+[node name="Support13" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.1533, 0, 31.7377)
+height = 15.25
+
+[node name="Support14" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.39319, 0, 31.7377)
+height = 14.4
+
+[node name="Support17" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.2758, 0, 31.7377)
+height = 13.3
+
+[node name="Support4" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -22.4066, 0, 20.4876)
+height = 33.0
+
+[node name="Support6" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.30515, 0, 20.075)
+height = 26.75
+
+[node name="Support10" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.5, 0, 28.3217)
+height = 29.75
+angle = -0.785
+
+[node name="Support11" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.5, 0, 28.3217)
+height = 24.75
+angle = -0.785
+
+[node name="Support12" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.5, 0, 28.3217)
+height = 19.7
+angle = -0.785
+
+[node name="Support7" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.1741, 0, 12.9992)
+height = 28.6
+
+[node name="Support8" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.59052, -0.485229, 15.7239)
+height = 25.3
+
+[node name="Support9" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.3296, -0.485229, 18.029)
+height = 22.8
+
+[node name="Support15" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30.1678, -0.485229, 26.8088)
+height = 21.85
+
+[node name="Support19" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.0446, -0.485229, 28.7282)
+height = 16.4
+
+[node name="Support5" parent="MarbleCourseContainer/Structures" instance=ExtResource("4_8i8at")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 23.7331, 0, 23.6001)
+height = 34.0
+
+[node name="Star" parent="MarbleCourseContainer/Structures" instance=ExtResource("5_ys4a7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.7211, 3.09994, 17.8468)
+metadata/_edit_group_ = true
+
+[node name="Star-rigid" parent="MarbleCourseContainer/Structures/Star" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -0.00044087, 0, 0.00044087, 1, 0, 0, 0)
+sleeping = true
+freeze = true
+
+[node name="Star4" parent="MarbleCourseContainer/Structures" instance=ExtResource("5_ys4a7")]
+transform = Transform3D(0.941117, 0.338081, 0, -0.338081, 0.941117, 0, 0, 0, 1, 20.7465, 41.5957, -5.52841)
+metadata/_edit_group_ = true
+
+[node name="Star-rigid" parent="MarbleCourseContainer/Structures/Star4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -0.00044087, 0, 0.00044087, 1, 0, 0, 0)
+sleeping = true
+freeze = true
+
+[node name="Star6" parent="MarbleCourseContainer/Structures" instance=ExtResource("5_ys4a7")]
+transform = Transform3D(0.75057, 0.26963, 0.603278, -0.599272, 0.662423, 0.449522, -0.27842, -0.698925, 0.658776, 2.26183, 52.4236, 34.0749)
+metadata/_edit_group_ = true
+
+[node name="Star-rigid" parent="MarbleCourseContainer/Structures/Star6" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -0.00044087, 0, 0.00044087, 1, 0, 0, 0)
+sleeping = true
+freeze = true
+
+[node name="Star5" parent="MarbleCourseContainer/Structures" instance=ExtResource("5_ys4a7")]
+transform = Transform3D(0.856817, 0.515621, 0, -0.515621, 0.856817, 0, 0, 0, 1, -14.5275, 17.2638, 12.8314)
+metadata/_edit_group_ = true
+
+[node name="Star-rigid" parent="MarbleCourseContainer/Structures/Star5" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -0.00044087, 0, 0.00044087, 1, 0, 0, 0)
+sleeping = true
+freeze = true
+
+[node name="Star2" parent="MarbleCourseContainer/Structures" instance=ExtResource("5_ys4a7")]
+transform = Transform3D(0.796245, 0, -0.604974, 0, 1, 0, 0.604974, 0, 0.796245, 14.8788, 3.09994, 56.4518)
+metadata/_edit_group_ = true
+
+[node name="Star-rigid" parent="MarbleCourseContainer/Structures/Star2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -0.00044087, 0, 0.00044087, 1, 0, 0, 0)
+sleeping = true
+freeze = true
+
+[node name="Star3" parent="MarbleCourseContainer/Structures" instance=ExtResource("5_ys4a7")]
+transform = Transform3D(0.936648, -0.350273, 0, 0.350273, 0.936648, 0, 0, 0, 1, -34.1556, 3.09994, 26.8624)
+metadata/_edit_group_ = true
+
+[node name="Star-rigid" parent="MarbleCourseContainer/Structures/Star3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -0.00044087, 0, 0.00044087, 1, 0, 0, 0)
+sleeping = true
+freeze = true
+
+[node name="MarbleStand" parent="MarbleCourseContainer/Structures" instance=ExtResource("6_8ljhu")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 27.2687, 0, 60.1585)
+
+[node name="ElevatorPositionMarker3D" type="Marker3D" parent="MarbleCourseContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 24.9776)
+
+[node name="ViewportTriggers" type="Node" parent="MarbleCourseContainer"]
+
+[node name="StartAreaCheckPoint" type="Area3D" parent="MarbleCourseContainer/ViewportTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1158, 15.8863, 30.8881)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarbleCourseContainer/ViewportTriggers/StartAreaCheckPoint"]
+shape = SubResource("BoxShape3D_3dudh")
+
+[node name="ElevatorEntryAreaCheckPoint" type="Area3D" parent="MarbleCourseContainer/ViewportTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0422, 1.60019, 13.5493)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarbleCourseContainer/ViewportTriggers/ElevatorEntryAreaCheckPoint"]
+shape = SubResource("BoxShape3D_3dudh")
+
+[node name="ElevatorExitAreaCheckPoint" type="Area3D" parent="MarbleCourseContainer/ViewportTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.66, 42.3935, 13.3254)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarbleCourseContainer/ViewportTriggers/ElevatorExitAreaCheckPoint"]
+shape = SubResource("BoxShape3D_3dudh")
+
+[node name="FunnelAreaCheckPoint" type="Area3D" parent="MarbleCourseContainer/ViewportTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0292759, 6.48797, 13.4631)
+monitoring = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarbleCourseContainer/ViewportTriggers/FunnelAreaCheckPoint"]
+shape = SubResource("BoxShape3D_3dudh")
+
+[node name="Cameras" type="Node3D" parent="MarbleCourseContainer"]
+
+[node name="TopBirdCamViewport" type="SubViewport" parent="MarbleCourseContainer/Cameras"]
+msaa_3d = 3
+size = Vector2i(426, 240)
+
+[node name="BirdViewCamera" type="Camera3D" parent="MarbleCourseContainer/Cameras/TopBirdCamViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.25867, 53.2812, 0.687952)
+projection = 1
+size = 40.0
+
+[node name="FrontBirdCamViewport" type="SubViewport" parent="MarbleCourseContainer/Cameras"]
+msaa_3d = 3
+size = Vector2i(426, 240)
+
+[node name="BirdCamViewport" type="Camera3D" parent="MarbleCourseContainer/Cameras/FrontBirdCamViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.619409, 0.785068, 0, -0.785068, 0.619409, 4.15217, 52.856, 27.3798)
+projection = 1
+size = 45.0
+
+[node name="StartCamViewport" type="SubViewport" parent="MarbleCourseContainer/Cameras"]
+msaa_3d = 3
+size = Vector2i(1152, 648)
+
+[node name="StartCamera" type="Camera3D" parent="MarbleCourseContainer/Cameras/StartCamViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 20.5751, 20.2022, 50.4174)
+cull_mask = 1048573
+size = 25.0
+
+[node name="ElevatorCamViewport" type="SubViewport" parent="MarbleCourseContainer/Cameras"]
+msaa_3d = 3
+size = Vector2i(384, 648)
+
+[node name="ElevatorCamera" type="Camera3D" parent="MarbleCourseContainer/Cameras/ElevatorCamViewport"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -38.6777, 10.7196, 24.1701)
+cull_mask = 1048573
+attributes = SubResource("CameraAttributesPractical_bj203")
+
+[node name="LoopCamViewport" type="SubViewport" parent="MarbleCourseContainer/Cameras"]
+
+[node name="LoopCamera" type="Camera3D" parent="MarbleCourseContainer/Cameras/LoopCamViewport"]
+transform = Transform3D(0.922666, 0, 0.3856, 0, 1, 0, -0.3856, 0, 0.922666, 3.74346, 21.8412, 18.3119)
+cull_mask = 1048573
+
+[node name="BallTrackingViewport" type="SubViewport" parent="MarbleCourseContainer/Cameras"]
+msaa_3d = 3
+size = Vector2i(460, 648)
+
+[node name="BallTrackingCam" type="Camera3D" parent="MarbleCourseContainer/Cameras/BallTrackingViewport"]
+transform = Transform3D(0.707107, -0.612372, 0.353554, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353554, 1.76777, 4.33013, 13.5055)
+cull_mask = 1048573
+script = ExtResource("7_fdsf5")
+
+[node name="BallTrackingWideViewport" type="SubViewport" parent="MarbleCourseContainer/Cameras"]
+msaa_3d = 3
+size = Vector2i(726, 648)
+
+[node name="BallTrackingCam" type="Camera3D" parent="MarbleCourseContainer/Cameras/BallTrackingWideViewport"]
+transform = Transform3D(0.707107, -0.612372, 0.353554, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353554, 5.3033, 12.9904, 17.041)
+cull_mask = 1048573
+script = ExtResource("7_fdsf5")
+tracking_distance = 15.0
+
+[node name="BallTrackingViewport_Elevator" type="SubViewport" parent="MarbleCourseContainer/Cameras"]
+msaa_3d = 3
+size = Vector2i(460, 648)
+
+[node name="ElevatorTrackingCam" type="Camera3D" parent="MarbleCourseContainer/Cameras/BallTrackingViewport_Elevator"]
+transform = Transform3D(0.707107, -0.612372, 0.353554, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353554, 3.53553, 8.66025, 15.2732)
+cull_mask = 1048573
+script = ExtResource("7_fdsf5")
+tracking_distance = 7.5
+theta = 1.047
+center_nodepath = NodePath("../../../ElevatorPositionMarker3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 37.4874, 208.924, 11.7377)
+light_indirect_energy = 2.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w10tm")
+
+[node name="CameraViewports_Start" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="StartCamView" type="Sprite2D" parent="CameraViewports_Start"]
+position = Vector2(576, 324)
+texture = SubResource("ViewportTexture_kq7ge")
+
+[node name="ElevatorCamView" type="Sprite2D" parent="CameraViewports_Start"]
+visible = false
+position = Vector2(192, 325)
+texture = SubResource("ViewportTexture_isf1c")
+
+[node name="CameraViewportsTracking" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="BallTrackingWideView" type="Sprite2D" parent="CameraViewportsTracking"]
+position = Vector2(363, 324)
+texture = SubResource("ViewportTexture_vpwi4")
+
+[node name="Panel" type="Panel" parent="CameraViewportsTracking"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 648.0
+
+[node name="BallTrackingView" type="Sprite2D" parent="CameraViewportsTracking/Panel"]
+position = Vector2(230, 324)
+texture = SubResource("ViewportTexture_f3la1")
+
+[node name="ElevatorTrackingView" type="Sprite2D" parent="CameraViewportsTracking/Panel"]
+position = Vector2(230, 324)
+texture = SubResource("ViewportTexture_qmetp")
+
+[node name="CameraViewports_Course" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="CameraViewports_Course"]
+layout_mode = 0
+offset_left = 704.0
+offset_right = 1154.0
+offset_bottom = 648.0
+
+[node name="TopView" type="Sprite2D" parent="CameraViewports_Course/Panel"]
+position = Vector2(224, 168)
+texture = SubResource("ViewportTexture_4entp")
+
+[node name="FrontView" type="Sprite2D" parent="CameraViewports_Course/Panel"]
+position = Vector2(224, 488)
+texture = SubResource("ViewportTexture_hbv4p")
+
+[node name="TopViewLabel" type="Label" parent="CameraViewports_Course/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 180.0
+offset_bottom = 45.0
+text = "Top View"
+label_settings = ExtResource("7_fjvcp")
+
+[node name="FrontViewLabel" type="Label" parent="CameraViewports_Course/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 328.0
+offset_right = 198.0
+offset_bottom = 365.0
+text = "Front View"
+label_settings = ExtResource("7_fjvcp")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="FPSLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 208.0
+offset_bottom = 45.0
+text = "FPS: "
+label_settings = SubResource("LabelSettings_ug8bw")
+script = ExtResource("7_nlpe8")
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 600.0
+offset_right = 312.0
+offset_bottom = 640.0
+label_settings = SubResource("LabelSettings_ug8bw")
+script = ExtResource("8_6xbf2")
+
+[node name="Camera_Debug" type="Camera3D" parent="."]
+transform = Transform3D(-0.953275, 0.0995858, -0.285218, -2.78876e-08, 0.944106, 0.329641, 0.302104, 0.314239, -0.899993, -11.2642, 20.4406, 12.3974)
+current = true
+fov = 100.0
+
+[connection signal="body_entered" from="MarbleCourseContainer/ViewportTriggers/StartAreaCheckPoint" to="." method="_on_start_area_check_point_body_entered"]
+[connection signal="body_entered" from="MarbleCourseContainer/ViewportTriggers/ElevatorEntryAreaCheckPoint" to="." method="_on_elevator_entry_area_check_point_body_entered"]
+[connection signal="body_entered" from="MarbleCourseContainer/ViewportTriggers/ElevatorExitAreaCheckPoint" to="." method="_on_elevator_exit_area_check_point_body_entered"]
+[connection signal="body_entered" from="MarbleCourseContainer/ViewportTriggers/FunnelAreaCheckPoint" to="." method="_on_funnel_area_check_point_body_entered"]
+
+[editable path="MarbleCourseContainer/Structures/Star"]
+[editable path="MarbleCourseContainer/Structures/Star4"]
+[editable path="MarbleCourseContainer/Structures/Star6"]
+[editable path="MarbleCourseContainer/Structures/Star5"]
+[editable path="MarbleCourseContainer/Structures/Star2"]
+[editable path="MarbleCourseContainer/Structures/Star3"]
+[editable path="MarbleCourseContainer/Structures/MarbleStand"]
+[editable path="MarbleCourseContainer/Structures/MarbleStand/MarbleStand"]
+[editable path="MarbleCourseContainer/Structures/MarbleStand/MarbleStandGimmick"]
+[editable path="MarbleCourseContainer/Structures/MarbleStand/MarbleStandGimmick/Kanban"]

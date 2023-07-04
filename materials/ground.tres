@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dqr7hpjevfk5t"]
+
+[resource]
+albedo_color = Color(0.431373, 0.466667, 0.545098, 1)
+metallic = 0.81
+roughness = 0.57
+clearcoat_enabled = true
+anisotropy_enabled = true
+anisotropy = 0.57
+refraction_scale = 0.4

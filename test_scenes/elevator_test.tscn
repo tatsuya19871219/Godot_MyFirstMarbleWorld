@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://dli87c4mjmp3u"]
+
+[ext_resource type="Script" path="res://marble_course_editor.gd" id="1_ph0qb"]
+[ext_resource type="PackedScene" uid="uid://ckiewli615k6h" path="res://rails/elevator.tscn" id="1_vygqd"]
+[ext_resource type="PackedScene" uid="uid://bambkqqr8e6d6" path="res://ball.tscn" id="4_kfwr7"]
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="5_78a0i"]
+[ext_resource type="PackedScene" uid="uid://cbr5twvn8yehg" path="res://rails/slope_rail.tscn" id="5_qelyx"]
+[ext_resource type="Material" uid="uid://ba4gi4b4lpxtr" path="res://materials/rail.tres" id="5_ya81e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn84y"]
+albedo_color = Color(0, 0.141176, 0.176471, 1)
+metallic_specular = 1.0
+clearcoat = 0.06
+clearcoat_roughness = 0.58
+anisotropy_enabled = true
+anisotropy = 0.69
+refraction_scale = -1.0
+grow_amount = -1.477
+
+[sub_resource type="BoxMesh" id="BoxMesh_phkon"]
+material = SubResource("StandardMaterial3D_pn84y")
+size = Vector3(50, 2, 50)
+
+[node name="Elevator_test" type="Node"]
+script = ExtResource("1_ph0qb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.894217, 0, -0.447634, 0, 1, 0, 0.447634, 0, 0.894217, -6.52062, 3.63079, 4.77608)
+current = true
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.915361, 0, 0.402635, 0, 1, 0, -0.402635, 0, 0.915361, 0.706566, 1.84751, 2.26014)
+
+[node name="Camera3D3" type="Camera3D" parent="."]
+transform = Transform3D(-0.372721, 0.380925, -0.846153, 0.153556, 0.924606, 0.348604, 0.91515, -6.50866e-08, -0.403113, -2.85743, 4.09998, 3.07071)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.678993, -0.350675, 0.644977, 0, 0.878542, 0.477665, -0.734145, -0.324331, 0.596524, 11.8104, 11.4839, 5.05236)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.99913, -0.0199192, 0.0366362, 0, 0.878542, 0.477665, -0.0417011, 0.477249, -0.877778, 11.8104, 11.4839, -17.7205)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2202, 3.99734, 0.33939)
+
+[node name="Timer" type="Timer" parent="Node"]
+wait_time = 10.0
+autostart = true
+
+[node name="Ball" parent="." instance=ExtResource("4_kfwr7")]
+transform = Transform3D(0.152282, 0.102895, -0.982966, -0.405907, -0.900306, -0.157126, -0.901138, 0.422921, -0.0953349, 0.365989, 12.3513, -0.474655)
+sleeping = true
+
+[node name="Ball2" parent="." instance=ExtResource("4_kfwr7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6681, 2.30726, -0.0273738)
+sleeping = true
+can_sleep = false
+
+[node name="StraightRail" parent="." instance=ExtResource("5_78a0i")]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, -3.66, 12.6321, -0.503)
+
+[node name="SlopeRail" parent="." instance=ExtResource("5_qelyx")]
+transform = Transform3D(-0.999999, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -0.999999, -6.25, 1.25, 5.46392e-07)
+material = ExtResource("5_ya81e")
+
+[node name="Elevator" parent="." instance=ExtResource("1_vygqd")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("BoxMesh_phkon")
+
+[connection signal="timeout" from="Node/Timer" to="Node" method="_on_timer_timeout"]

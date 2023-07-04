@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dboalrejeqbrn"]
+
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="1_nxb5t"]
+[ext_resource type="PackedScene" uid="uid://bambkqqr8e6d6" path="res://ball.tscn" id="2_s5h6l"]
+
+[node name="RailWidthTest" type="Node"]
+
+[node name="StraightRail" parent="." instance=ExtResource("1_nxb5t")]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, -4.88659)
+length = 20
+
+[node name="StraightRail2" parent="." instance=ExtResource("1_nxb5t")]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, -1.77081)
+length = 20
+width = 0.9
+
+[node name="Ball" parent="." instance=ExtResource("2_s5h6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62708, 4.82119, -4.89691)
+
+[node name="Ball2" parent="." instance=ExtResource("2_s5h6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62708, 4.82119, -1.72248)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.787688, 0.616074, 0, -0.616074, 0.787688, 2.44919, 7.598, 4.5799)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

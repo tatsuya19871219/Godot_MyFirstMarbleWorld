@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0ht72182rkn8"]
+
+[ext_resource type="Texture2D" uid="uid://cfbsm0ronjf3p" path="res://arrow_round.svg" id="1_dgp7m"]
+[ext_resource type="Script" path="res://marble.gd" id="1_k36iw"]
+[ext_resource type="Material" uid="uid://dcbxbcf13ue4q" path="res://materials/marble.tres" id="2_k8iqx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dsian"]
+friction = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ui3eo"]
+material = ExtResource("2_k8iqx")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0n3t0"]
+
+[node name="Marble" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_dsian")
+script = ExtResource("1_k36iw")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ui3eo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0n3t0")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="PointingArrow" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+layers = 2
+modulate = Color(1, 0, 1, 1)
+texture = ExtResource("1_dgp7m")

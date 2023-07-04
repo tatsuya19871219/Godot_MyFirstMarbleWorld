@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw3ct2dlpwsrn"]
+
+[ext_resource type="PackedScene" uid="uid://cbr5twvn8yehg" path="res://rails/slope_rail.tscn" id="2_bv67r"]
+[ext_resource type="Material" uid="uid://ba4gi4b4lpxtr" path="res://materials/rail.tres" id="2_rcotw"]
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="3_k7yog"]
+[ext_resource type="PackedScene" uid="uid://b1upretlokiq5" path="res://rails/turn_rail.tscn" id="4_v2btv"]
+[ext_resource type="PackedScene" uid="uid://b1ipvu5bv2st4" path="res://rails/curve_rail.tscn" id="5_2o6pm"]
+[ext_resource type="PackedScene" uid="uid://bu2c1ornnxcg2" path="res://rails/vertical_loop.tscn" id="6_ubhl4"]
+[ext_resource type="PackedScene" uid="uid://dmnct6flnfumb" path="res://rails/horizontal_loop.tscn" id="7_8dsha"]
+
+[node name="RailInstantiateTest" type="Node"]
+
+[node name="SlopeRail" parent="." instance=ExtResource("2_bv67r")]
+angle = 45
+material = ExtResource("2_rcotw")
+
+[node name="SlopeRail2" parent="." instance=ExtResource("2_bv67r")]
+transform = Transform3D(0.253102, -0.769934, -0.585782, 0.305383, 0.638123, -0.706782, 0.917976, 0, 0.396635, 0, 0, 5.05928)
+angle = 60
+material = ExtResource("2_rcotw")
+
+[node name="StraightRail" parent="." instance=ExtResource("3_k7yog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.37975, 0, 0)
+
+[node name="TurnRail" parent="." instance=ExtResource("4_v2btv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.0688)
+
+[node name="CurveRail" parent="." instance=ExtResource("5_2o6pm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0334, 0, 0)
+angle = 30
+
+[node name="VerticalLoop" parent="." instance=ExtResource("6_ubhl4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.9976)
+diameter = 7.5
+
+[node name="HorizontalLoop" parent="." instance=ExtResource("7_8dsha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0924, 0, 15.1901)

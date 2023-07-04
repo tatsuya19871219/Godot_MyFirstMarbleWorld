@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn11yilbn0meh"]
+
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="1_q518y"]
+[ext_resource type="PackedScene" uid="uid://bambkqqr8e6d6" path="res://ball.tscn" id="2_p3wta"]
+[ext_resource type="PackedScene" uid="uid://dpubklkijm0fi" path="res://rails/models/test/rail_test_line_circle_with_face.glb" id="4_36mw8"]
+[ext_resource type="PackedScene" uid="uid://ckhom2ultreph" path="res://rails/models/test/rail_test_line_circle_with_face.blend" id="7_wmdm2"]
+
+[node name="rail_parameter_test" type="Node"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.877364, 0.479825, 0, -0.479825, 0.877364, -0.0140182, 3.11322, 4.60234)
+
+[node name="Ball" parent="." instance=ExtResource("2_p3wta")]
+transform = Transform3D(1, -1.38459e-07, 1.379e-12, 1.38459e-07, 1, -9.73484e-06, -3.11318e-14, 9.73484e-06, 1, 2.42775, 1.50765, -2.47688)
+
+[node name="Ball2" parent="." instance=ExtResource("2_p3wta")]
+transform = Transform3D(1, -1.38459e-07, 1.379e-12, 1.38459e-07, 1, -9.73484e-06, -3.11318e-14, 9.73484e-06, 1, 2.44283, 1.508, 0.00918984)
+
+[node name="Ball3" parent="." instance=ExtResource("2_p3wta")]
+transform = Transform3D(1, -1.38459e-07, 1.379e-12, 1.38459e-07, 1, -9.73484e-06, -3.11318e-14, 9.73484e-06, 1, -2.92576, 1.508, -0.0747614)
+
+[node name="rail" parent="." instance=ExtResource("1_q518y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42775, 0, -2.47688)
+
+[node name="rail_test_line_circle_with_face" parent="." instance=ExtResource("7_wmdm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.240777, 4.76837e-07, 0.00918984)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.53794)
+
+[node name="rail_test_line_circle_with_face2" parent="." instance=ExtResource("4_36mw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66407, 0, 0.00508738)

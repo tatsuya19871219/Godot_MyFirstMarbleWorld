@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c500owhhq1hrb"]
+
+[ext_resource type="Script" path="res://marble_course_editor.gd" id="1_bjt7f"]
+[ext_resource type="PackedScene" uid="uid://dee2jf5dbh3m4" path="res://rails/dockable_dummy.tscn" id="1_ptplt"]
+[ext_resource type="Material" path="res://materials/rail.tres" id="3_unan7"]
+
+[node name="DockableDummyTest" type="Node"]
+script = ExtResource("1_bjt7f")
+
+[node name="DockableDummy" parent="." instance=ExtResource("1_ptplt")]
+transform = Transform3D(-0.940834, -0.0788355, 0.32957, -0.142992, -0.789374, -0.597028, 0.307221, -0.60883, 0.731396, 6.17602, 5.01089, -3.84025)
+material = ExtResource("3_unan7")
+
+[node name="DockableDummy2" parent="." instance=ExtResource("1_ptplt")]
+transform = Transform3D(0.997589, 0, -0.0694081, 0, 1, 0, 0.0694081, 0, 0.997589, -6.95644, 4.31959, -2.69054)
+material = ExtResource("3_unan7")

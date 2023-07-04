@@ -2,6 +2,7 @@
 .godot/
 
 # Godot-specific ignores
+*.import
 .import/
 export.cfg
 export_presets.cfg
@@ -13,3 +14,9 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+.vs/Godot_MyFirstMarbleWorld/v17/.wsuo
+.vs/VSWorkspaceState.json
+
+# 3d models
+*.glb
+test/

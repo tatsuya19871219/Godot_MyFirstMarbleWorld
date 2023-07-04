@@ -1,0 +1,331 @@
+[gd_scene load_steps=15 format=3 uid="uid://c8tn0452eyuig"]
+
+[ext_resource type="Script" path="res://marble_course_editor.gd" id="1_o4sns"]
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="3_myk0h"]
+[ext_resource type="PackedScene" uid="uid://cbr5twvn8yehg" path="res://rails/slope_rail.tscn" id="4_df7al"]
+[ext_resource type="PackedScene" uid="uid://bm0ok0hyee2m6" path="res://terrain/Funnel.glb" id="5_xbvs6"]
+[ext_resource type="Material" uid="uid://tuh1pjy47dwf" path="res://materials/funnel.tres" id="6_4d43c"]
+[ext_resource type="PackedScene" uid="uid://b1upretlokiq5" path="res://rails/turn_rail.tscn" id="6_db3nu"]
+[ext_resource type="PackedScene" uid="uid://ckiewli615k6h" path="res://rails/elevator.tscn" id="6_xrkbj"]
+[ext_resource type="PackedScene" uid="uid://by2dglfce4xhv" path="res://rails/branch.tscn" id="7_aexy4"]
+[ext_resource type="PackedScene" uid="uid://dmnct6flnfumb" path="res://rails/horizontal_loop.tscn" id="8_f2752"]
+[ext_resource type="PackedScene" uid="uid://b1ipvu5bv2st4" path="res://rails/curve_rail.tscn" id="9_1xxou"]
+[ext_resource type="PackedScene" uid="uid://bu2c1ornnxcg2" path="res://rails/vertical_loop.tscn" id="10_gwden"]
+[ext_resource type="Script" path="res://ball_generator.gd" id="14_n1820"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2fby5"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 5.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v04kd"]
+height = 5.0
+radius = 0.1
+
+[node name="MarbleCourse" type="Node3D"]
+script = ExtResource("1_o4sns")
+metadata/_edit_group_ = true
+
+[node name="ElevatorRegion" type="Node3D" parent="."]
+
+[node name="SlopeRail3" parent="ElevatorRegion" instance=ExtResource("4_df7al")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.75, 1.25, 25)
+
+[node name="SlopeRail4" parent="ElevatorRegion" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -8.86384, 2.55154, 25)
+
+[node name="StraightRail5" parent="ElevatorRegion" instance=ExtResource("3_myk0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.36384, 2.55154, 25)
+
+[node name="Elevator" parent="ElevatorRegion" instance=ExtResource("6_xrkbj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 25)
+height = 45
+
+[node name="LeftSideRail" parent="ElevatorRegion/Elevator/StraightRail" index="0"]
+mesh = SubResource("CylinderMesh_2fby5")
+
+[node name="CollisionShape3D" parent="ElevatorRegion/Elevator/StraightRail/LeftSideRail/LeftSideRailBody" index="0"]
+shape = SubResource("CylinderShape3D_v04kd")
+
+[node name="RightSideRail" parent="ElevatorRegion/Elevator/StraightRail" index="1"]
+mesh = SubResource("CylinderMesh_2fby5")
+
+[node name="CollisionShape3D" parent="ElevatorRegion/Elevator/StraightRail/RightSideRail/RightSideRailBody" index="0"]
+shape = SubResource("CylinderShape3D_v04kd")
+
+[node name="SlopeRail" parent="ElevatorRegion" instance=ExtResource("4_df7al")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.86384, 2.55154, 25)
+angle = 30
+
+[node name="RootCourse" type="Node3D" parent="."]
+
+[node name="StraightRail" parent="RootCourse" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -22.017, 42.0082, 25.6096)
+length = 4.0
+
+[node name="SlopeRail2" parent="RootCourse" instance=ExtResource("4_df7al")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.6421, 40.8398, 23.1096)
+up = false
+
+[node name="TurnRail" parent="RootCourse" instance=ExtResource("6_db3nu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6421, 40.8398, 23.6096)
+
+[node name="SlopeRail5" parent="RootCourse" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -15.1421, 40.8398, 25.6096)
+up = false
+
+[node name="StraightRail2" parent="RootCourse" instance=ExtResource("3_myk0h")]
+transform = Transform3D(-4.30473e-08, -7.5904e-09, 1, -0.173648, 0.984808, 0, -0.984808, -0.173648, -4.37114e-08, -12.6421, 39.8417, 16.1969)
+length = 4.0
+
+[node name="BranchRail" parent="RootCourse" instance=ExtResource("7_aexy4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.6421, 39.4944, 14.2273)
+
+[node name="Branch1" type="Node3D" parent="."]
+
+[node name="SlopeRail3" parent="Branch1" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -24.5852, 34.2059, 8.7273)
+angle = 60
+
+[node name="SlopeRail2" parent="Branch1" instance=ExtResource("4_df7al")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5852, 36.3436, 8.7273)
+
+[node name="StraightRail" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 0, 1, -19.6042, 33.7701, 8.7273)
+length = 10.0
+
+[node name="HorizontalLoop" parent="Branch1" instance=ExtResource("8_f2752")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6233, 28.3343, 1.2273)
+diameter = 15
+
+[node name="StraightRail2" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.999048, 0.0436194, 0, -0.0436194, 0.999048, 0, 0, 0, 1, -7.13039, 28.0072, 8.7273)
+length = 15.0
+
+[node name="HorizontalLoop2" parent="Branch1" instance=ExtResource("8_f2752")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.362466, 25.18, 3.7273)
+diameter = 10
+height = 2.5
+
+[node name="StraightRail3" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.28532, 25.18, 8.7273)
+length = 15.0
+
+[node name="HorizontalLoop3" parent="Branch1" instance=ExtResource("8_f2752")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7853, 22.68, 6.2273)
+height = 2.5
+
+[node name="StraightRail4" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2739, 22.4186, 8.7273)
+
+[node name="StraightRail7" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 0, 1, 16.2796, 22.5493, 8.7273)
+length = 3.0
+
+[node name="StraightRail5" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.1871, 22.4186, 15.0907)
+length = 2.0
+
+[node name="SlopeRail4" parent="Branch1" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22.7739, 22.4187, 21.4541)
+up = false
+
+[node name="SlopeRail5" parent="Branch1" instance=ExtResource("4_df7al")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.12626, 19.3054, 21.4541)
+
+[node name="StraightRail6" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 14.4501, 20.862, 21.4541)
+length = 7.0
+
+[node name="StraightRail8" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.62626, 19.3054, 21.4541)
+length = 1.0
+
+[node name="CurveRail3" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7739, 22.4186, 8.7273)
+angle = 30
+
+[node name="CurveRail14" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 27.5779, 22.4186, 9.95573)
+angle = 60
+
+[node name="CurveRail5" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 27.5779, 22.4186, 20.2257)
+right = false
+angle = 60
+
+[node name="CurveRail13" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7739, 22.4186, 21.4541)
+right = false
+angle = 30
+
+[node name="CurveRail4" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.12626, 19.3054, 8.72166)
+right = false
+angle = 45
+
+[node name="CurveRail6" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.23994, 19.3054, 15.0879)
+right = false
+angle = 45
+
+[node name="CurveRail7" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.12626, 19.3054, 21.4541)
+angle = 45
+
+[node name="CurveRail8" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.23994, 19.3054, 15.0879)
+angle = 45
+
+[node name="CurveRail9" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6756, 16.7466, 25.4541)
+right = false
+angle = 45
+
+[node name="CurveRail10" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.0418, 16.7466, 15.0879)
+right = false
+angle = 45
+
+[node name="CurveRail11" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6756, 16.7466, 8.72166)
+angle = 45
+
+[node name="CurveRail12" parent="Branch1" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.0418, 16.7466, 19.0879)
+angle = 45
+
+[node name="SlopeRail" parent="Branch1" instance=ExtResource("4_df7al")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12626, 19.3054, 8.72166)
+up = false
+angle = 30
+
+[node name="SlopeRail6" parent="Branch1" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 14.6756, 16.7466, 8.72166)
+up = false
+angle = 30
+
+[node name="SlopeRail7" parent="Branch1" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 12.6756, 16.7466, 25.4541)
+angle = 30
+
+[node name="StraightRail9" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.0418, 16.7466, 17.0879)
+length = 4.0
+
+[node name="StraightRail10" parent="Branch1" instance=ExtResource("3_myk0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6756, 16.7466, 25.4541)
+length = 2.0
+
+[node name="Branch2" type="Node3D" parent="."]
+
+[node name="StraightRail" parent="Branch2" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -3.22729, 36.3474, 8.7273)
+
+[node name="StraightRail3" parent="Branch2" instance=ExtResource("3_myk0h")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 23.6929, 35.0495, 11.7817)
+length = 3.0
+
+[node name="SlopeRail" parent="Branch2" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.13061, 35.0495, 8.7273)
+
+[node name="CurveRail" parent="Branch2" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 22.6322, 35.0495, 10.721)
+right = false
+angle = 45
+
+[node name="CurveRail2" parent="Branch2" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29.3464, 35.0495, 14.6157)
+angle = 45
+
+[node name="TurnRail" parent="Branch2" instance=ExtResource("6_db3nu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8464, 35.0495, 15.6157)
+angle = 180
+
+[node name="SlopeRail2" parent="Branch2" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24.0622, 35.0569, 16.6157)
+up = false
+angle = 45
+
+[node name="StraightRail4" parent="Branch2" instance=ExtResource("3_myk0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.8122, 35.0569, 16.6157)
+length = 5.5
+
+[node name="StraightRail5" parent="Branch2" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 11.7824, 25.4141, 16.6157)
+length = 22.0
+
+[node name="VerticalLoop" parent="Branch2" instance=ExtResource("10_gwden")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499007, 19.273, 17.1176)
+diameter = 7.0
+
+[node name="StraightRail9" parent="Branch2" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0, 0, 0, 1, -14.3557, 16.0167, 24.4564)
+length = 4.0
+
+[node name="StraightRail11" parent="Branch2" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.999048, 0.0436194, 0, -0.0436194, 0.999048, 0, 0, 0, 1, -15.4067, 16.1583, 15.018)
+length = 1.5
+
+[node name="StraightRail12" parent="Branch2" instance=ExtResource("3_myk0h")]
+transform = Transform3D(0.999048, 0.0436194, 0, -0.0436194, 0.999048, 0, 0, 0, 1, -9.86578, 13.2334, 24.4564)
+
+[node name="HorizontalLoop" parent="Branch2" instance=ExtResource("8_f2752")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3634, 13.3424, 19.4564)
+diameter = 10
+height = 2.5
+
+[node name="SlopeRail4" parent="Branch2" instance=ExtResource("4_df7al")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.99901, 15.773, 15.0176)
+angle = 60
+
+[node name="SlopeRail5" parent="Branch2" instance=ExtResource("4_df7al")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6574, 16.1256, 15.018)
+angle = 30
+
+[node name="CurveRail3" parent="Branch2" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.156, 16.191, 15.018)
+right = false
+angle = 60
+
+[node name="CurveRail4" parent="Branch2" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -20.4831, 16.191, 17.2944)
+right = false
+angle = 60
+
+[node name="CurveRail5" parent="Branch2" instance=ExtResource("9_1xxou")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.3481, 16.191, 24.4564)
+angle = 60
+
+[node name="StraightRail2" parent="Branch2" instance=ExtResource("3_myk0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1306, 35.0495, 8.7273)
+length = 14.0
+
+[node name="Funnel" parent="." instance=ExtResource("5_xbvs6")]
+
+[node name="Funnel" parent="Funnel" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 25)
+surface_material_override/0 = ExtResource("6_4d43c")
+
+[node name="BallGenerator" type="Node" parent="."]
+script = ExtResource("14_n1820")
+
+[node name="Timer" type="Timer" parent="BallGenerator"]
+wait_time = 8.0
+
+[node name="Marker3D" type="Marker3D" parent="BallGenerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0078, 40.1466, 24.4344)
+
+[node name="BallGenerator2" type="Node" parent="."]
+script = ExtResource("14_n1820")
+
+[node name="Timer" type="Timer" parent="BallGenerator2"]
+wait_time = 8.0
+
+[node name="Marker3D" type="Marker3D" parent="BallGenerator2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6504, 34.7973, 16.643)
+
+[editable path="ElevatorRegion/Elevator"]
+[editable path="ElevatorRegion/Elevator/StraightRail"]
+[editable path="ElevatorRegion/Elevator/elevator_entery_gate"]
+[editable path="Funnel"]

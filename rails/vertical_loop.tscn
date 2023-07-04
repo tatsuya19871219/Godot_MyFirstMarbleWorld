@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu2c1ornnxcg2"]
+
+[ext_resource type="Script" path="res://rails/scripts/vertical_loop.gd" id="1_5ndar"]
+
+[node name="VerticalLoop" type="Node3D"]
+script = ExtResource("1_5ndar")
+metadata/_edit_group_ = true

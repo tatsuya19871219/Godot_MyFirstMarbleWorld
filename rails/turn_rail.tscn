@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1upretlokiq5"]
+
+[ext_resource type="Script" path="res://rails/scripts/turn_rail.gd" id="1_kjhnk"]
+
+[node name="TurnRail" type="Node3D"]
+script = ExtResource("1_kjhnk")
+metadata/_edit_group_ = true

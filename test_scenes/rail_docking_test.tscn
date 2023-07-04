@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bp6bm4gicloej"]
+
+[ext_resource type="Script" path="res://marble_course_editor.gd" id="1_t8i38"]
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="1_wm43j"]
+[ext_resource type="PackedScene" uid="uid://b1ipvu5bv2st4" path="res://rails/curve_rail.tscn" id="3_oojd6"]
+[ext_resource type="PackedScene" uid="uid://b1upretlokiq5" path="res://rails/turn_rail.tscn" id="4_myl3t"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_d5377"]
+radius = 1.0
+
+[node name="rail_parameter_test" type="Node"]
+script = ExtResource("1_t8i38")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.877364, 0.479825, 0, -0.479825, 0.877364, -0.0140182, 3.11322, 4.60234)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+light_energy = 5.0
+spot_range = 7.5
+
+[node name="CurveRail" parent="." instance=ExtResource("3_oojd6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.462568, 0.176622, 0.280234)
+
+[node name="StraightRail" parent="." instance=ExtResource("1_wm43j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75125, 0.176622, -6.65376)
+length = 6
+
+[node name="TurnRail" parent="." instance=ExtResource("4_myl3t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.537432, 0.176622, -4.28526)
+angle = 180
+
+[node name="DummyArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.35178, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DummyArea"]
+shape = SubResource("CylinderShape3D_d5377")

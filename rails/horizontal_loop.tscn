@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmnct6flnfumb"]
+
+[ext_resource type="Script" path="res://rails/scripts/horizontal_loop.gd" id="1_2fsfr"]
+
+[node name="HorizontalLoop" type="Node3D"]
+script = ExtResource("1_2fsfr")
+metadata/_edit_group_ = true

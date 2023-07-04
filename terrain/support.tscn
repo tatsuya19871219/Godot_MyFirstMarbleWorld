@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://c0m84r6oc28a6"]
+
+[ext_resource type="Script" path="res://terrain/support.gd" id="1_4ivcm"]
+[ext_resource type="Material" uid="uid://bq7ncidef61q6" path="res://materials/support.tres" id="2_r51v0"]
+[ext_resource type="Material" uid="uid://ba4gi4b4lpxtr" path="res://materials/rail.tres" id="3_ifvt5"]
+[ext_resource type="Material" uid="uid://cnle58ulodmj0" path="res://materials/light_off.tres" id="4_iqmxg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mnwfk"]
+material = ExtResource("2_r51v0")
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_226xs"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o0tgm"]
+material = ExtResource("2_r51v0")
+height = 10.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p1mh8"]
+height = 10.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_dpoqh"]
+material = ExtResource("2_r51v0")
+inner_radius = 1.2
+outer_radius = 1.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ubcn3"]
+height = 0.5
+radius = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f17eo"]
+material = ExtResource("3_ifvt5")
+top_radius = 0.1
+bottom_radius = 0.15
+height = 0.75
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1x41e"]
+material = ExtResource("4_iqmxg")
+radius = 0.125
+height = 0.5
+
+[sub_resource type="TorusMesh" id="TorusMesh_bnkwe"]
+material = ExtResource("4_iqmxg")
+inner_radius = 1.3
+outer_radius = 1.5
+
+[node name="Support" type="Node3D"]
+script = ExtResource("1_4ivcm")
+metadata/_edit_group_ = true
+
+[node name="SupportBody" type="StaticBody3D" parent="."]
+
+[node name="BaseMesh" type="MeshInstance3D" parent="SupportBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_mnwfk")
+
+[node name="BaseCollisionShape" type="CollisionShape3D" parent="SupportBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_226xs")
+
+[node name="PoleMesh" type="MeshInstance3D" parent="SupportBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mesh = SubResource("CylinderMesh_o0tgm")
+skeleton = NodePath("../BaseMesh")
+
+[node name="PoleCollisionShape" type="CollisionShape3D" parent="SupportBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_p1mh8")
+
+[node name="Ring" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="RingMesh" type="MeshInstance3D" parent="Ring"]
+transform = Transform3D(-0.000203653, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -0.000203653, 8.90196e-12, 0, 1, 0)
+mesh = SubResource("TorusMesh_dpoqh")
+skeleton = NodePath("../../SupportBody")
+
+[node name="RingArea" type="Area3D" parent="Ring/RingMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ring/RingMesh/RingArea"]
+shape = SubResource("CylinderShape3D_ubcn3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ring/RingMesh"]
+transform = Transform3D(-4.3714e-08, -1, 0, 1, -4.3714e-08, 1.7398e-15, -4.08924e-14, 0, 1, 0.95, 1.02318e-12, 0)
+mesh = SubResource("CylinderMesh_f17eo")
+
+[node name="SmallLight" type="MeshInstance3D" parent="Ring/RingMesh"]
+transform = Transform3D(1, -1.74846e-07, 0, 0, 4.37114e-08, -1, 1.74846e-07, 1, 4.37114e-08, 1.73472e-18, 0, -1.5)
+visible = false
+mesh = SubResource("CapsuleMesh_1x41e")
+
+[node name="Light" type="MeshInstance3D" parent="Ring/RingMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.7398e-15, 0, -1.95765e-14, 1, 0, -1.13687e-13, -0.1)
+mesh = SubResource("TorusMesh_bnkwe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ring/RingMesh"]
+transform = Transform3D(4.3714e-08, 1, -8.74228e-08, 1, -4.3714e-08, -3.00628e-15, -1.24714e-14, -8.74228e-08, -1, -0.95, 1.02318e-12, 0)
+mesh = SubResource("CylinderMesh_f17eo")
+
+[connection signal="body_entered" from="Ring/RingMesh/RingArea" to="." method="_on_ring_area_body_entered"]
+[connection signal="body_exited" from="Ring/RingMesh/RingArea" to="." method="_on_ring_area_body_exited"]

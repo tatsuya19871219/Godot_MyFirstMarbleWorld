@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgv2j8js5nlmd"]
+
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="1_nodc5"]
+[ext_resource type="PackedScene" uid="uid://bambkqqr8e6d6" path="res://ball.tscn" id="2_ohgfj"]
+
+[node name="rail_parameter_test" type="Node"]
+
+[node name="rail" parent="." instance=ExtResource("1_nodc5")]
+length = 7
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.877364, 0.479825, 0, -0.479825, 0.877364, -0.0140182, 3.11322, 4.60234)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+light_energy = 5.0
+spot_range = 7.5
+
+[node name="Ball" parent="." instance=ExtResource("2_ohgfj")]
+transform = Transform3D(1, -1.38459e-07, 1.379e-12, 1.38459e-07, 1, -9.73484e-06, -3.11318e-14, 9.73484e-06, 1, -6.19545e-08, 1.50765, 2.78487e-06)

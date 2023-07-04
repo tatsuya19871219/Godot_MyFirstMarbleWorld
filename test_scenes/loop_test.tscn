@@ -1,0 +1,440 @@
+[gd_scene load_steps=32 format=3 uid="uid://bn5by7avuxt0e"]
+
+[ext_resource type="Script" path="res://marble_course_editor.gd" id="1_wcl7y"]
+[ext_resource type="PackedScene" uid="uid://bu2c1ornnxcg2" path="res://rails/vertical_loop.tscn" id="4_3gekg"]
+[ext_resource type="PackedScene" uid="uid://bambkqqr8e6d6" path="res://ball.tscn" id="4_pu2j8"]
+[ext_resource type="PackedScene" uid="uid://dmnct6flnfumb" path="res://rails/horizontal_loop.tscn" id="5_08m0p"]
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="5_i0kxv"]
+
+[sub_resource type="GDScript" id="GDScript_81r3l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rlb83"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_34gig"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nmdls"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jqy4c"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u386t"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ag1rx"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="GDScript" id="GDScript_1n3m6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f4yb6"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kjvfb"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_751hf"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4pp48"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcng5"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qsj7r"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f41tn"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qr2r"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_grgpj"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n0do4"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uwmug"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1iqhi"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y83o0"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_07gli"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h23nb"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ingeb"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s8ct0"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3je8y"]
+size = Vector3(1, 0.5, 2)
+
+[node name="LoopTest" type="Node"]
+script = ExtResource("1_wcl7y")
+
+[node name="Ball" parent="." instance=ExtResource("4_pu2j8")]
+transform = Transform3D(0.937434, -0.18614, -0.294226, -0.150509, 0.54538, -0.824565, 0.313949, 0.817259, 0.483242, -28.5089, -10350.1, -21.8633)
+linear_velocity = Vector3(-2.10087e-05, -97.9959, -1.75812e-05)
+angular_velocity = Vector3(8.39854e-07, -2.23291e-07, 1.01936e-07)
+
+[node name="Ball5" parent="." instance=ExtResource("4_pu2j8")]
+transform = Transform3D(0.999887, 0.0128341, 0.0078375, -0.0129634, 0.999777, 0.0166727, -0.00762177, -0.0167724, 0.99983, 9.37656, 4.62424, -2.98111)
+sleeping = true
+
+[node name="Ball2" parent="." instance=ExtResource("4_pu2j8")]
+transform = Transform3D(1, 0.00029077, 0.000818083, -0.000290679, 1, -0.000110768, -0.000818116, 0.00011053, 1, -18.4164, 8.17377, -3.38088)
+sleeping = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.394657, 2.48531, 3.96823)
+projection = 1
+current = true
+size = 12.5
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -18.5122, 21.6164, 11.7689)
+projection = 1
+size = 10.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.595, 0)
+
+[node name="StraightRail" parent="." instance=ExtResource("5_i0kxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19164, -3.36928, -4.40285)
+
+[node name="StraightRail2" parent="." instance=ExtResource("5_i0kxv")]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 20.2215, 14.5036, -2.90476)
+length = 45.0
+
+[node name="StraightRail3" parent="." instance=ExtResource("5_i0kxv")]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 20.4131, 14.5322, -9.0004)
+length = 45.0
+
+[node name="18326" type="Area3D" parent="StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18325" type="CollisionShape3D" parent="StraightRail3/18326"]
+shape = SubResource("BoxShape3D_rlb83")
+
+[node name="18328" type="Area3D" parent="StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18327" type="CollisionShape3D" parent="StraightRail3/18328"]
+shape = SubResource("BoxShape3D_34gig")
+
+[node name="18330" type="Area3D" parent="StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18329" type="CollisionShape3D" parent="StraightRail3/18330"]
+shape = SubResource("BoxShape3D_nmdls")
+
+[node name="Ball8" parent="." instance=ExtResource("4_pu2j8")]
+transform = Transform3D(0.999548, 0.0255324, 0.0158868, -0.0260495, 0.999108, 0.0332372, -0.015024, -0.033636, 0.999321, 12.9034, 8.08347, -9.01716)
+sleeping = true
+
+[node name="StraightRail4" parent="." instance=ExtResource("5_i0kxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00004, -3.34068, -10.4985)
+
+[node name="18320" type="Area3D" parent="StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18319" type="CollisionShape3D" parent="StraightRail4/18320"]
+shape = SubResource("BoxShape3D_jqy4c")
+
+[node name="18322" type="Area3D" parent="StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18321" type="CollisionShape3D" parent="StraightRail4/18322"]
+shape = SubResource("BoxShape3D_u386t")
+
+[node name="18324" type="Area3D" parent="StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18323" type="CollisionShape3D" parent="StraightRail4/18324"]
+shape = SubResource("BoxShape3D_ag1rx")
+
+[node name="VerticalLoop" parent="." instance=ExtResource("4_3gekg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19164, -2.01928, -2.40285)
+
+[node name="VerticalLoop2" parent="." instance=ExtResource("4_3gekg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8147e-05, -0.740676, -8.49849)
+diameter = 5.0
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.554)
+
+[node name="StraightRail3" parent="Node3D" instance=ExtResource("5_i0kxv")]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 20.4131, 14.5322, -9.0004)
+length = 45.0
+
+[node name="18326" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18325" type="CollisionShape3D" parent="Node3D/StraightRail3/18326"]
+shape = SubResource("BoxShape3D_rlb83")
+
+[node name="18328" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18327" type="CollisionShape3D" parent="Node3D/StraightRail3/18328"]
+shape = SubResource("BoxShape3D_34gig")
+
+[node name="18330" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18329" type="CollisionShape3D" parent="Node3D/StraightRail3/18330"]
+shape = SubResource("BoxShape3D_nmdls")
+
+[node name="42453" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42452" type="CollisionShape3D" parent="Node3D/StraightRail3/42453"]
+shape = SubResource("BoxShape3D_f4yb6")
+
+[node name="42455" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42454" type="CollisionShape3D" parent="Node3D/StraightRail3/42455"]
+shape = SubResource("BoxShape3D_kjvfb")
+
+[node name="42457" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42456" type="CollisionShape3D" parent="Node3D/StraightRail3/42457"]
+shape = SubResource("BoxShape3D_751hf")
+
+[node name="42459" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42458" type="CollisionShape3D" parent="Node3D/StraightRail3/42459"]
+shape = SubResource("BoxShape3D_4pp48")
+
+[node name="42461" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42460" type="CollisionShape3D" parent="Node3D/StraightRail3/42461"]
+shape = SubResource("BoxShape3D_wcng5")
+
+[node name="42463" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42462" type="CollisionShape3D" parent="Node3D/StraightRail3/42463"]
+shape = SubResource("BoxShape3D_qsj7r")
+
+[node name="42465" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42464" type="CollisionShape3D" parent="Node3D/StraightRail3/42465"]
+shape = SubResource("BoxShape3D_f41tn")
+
+[node name="42467" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42466" type="CollisionShape3D" parent="Node3D/StraightRail3/42467"]
+shape = SubResource("BoxShape3D_1qr2r")
+
+[node name="42469" type="Area3D" parent="Node3D/StraightRail3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42468" type="CollisionShape3D" parent="Node3D/StraightRail3/42469"]
+shape = SubResource("BoxShape3D_grgpj")
+
+[node name="Ball7" parent="Node3D" instance=ExtResource("4_pu2j8")]
+transform = Transform3D(0.999548, 0.0255324, 0.0158868, -0.0260495, 0.999108, 0.0332372, -0.015024, -0.033636, 0.999321, 18.9522, 14.4715, -9.01716)
+sleeping = true
+
+[node name="Ball8" parent="Node3D" instance=ExtResource("4_pu2j8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.49, 30.1689, -8.94955)
+sleeping = true
+
+[node name="StraightRail4" parent="Node3D" instance=ExtResource("5_i0kxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -3.29408, -10.5985)
+
+[node name="18320" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18319" type="CollisionShape3D" parent="Node3D/StraightRail4/18320"]
+shape = SubResource("BoxShape3D_jqy4c")
+
+[node name="18322" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18321" type="CollisionShape3D" parent="Node3D/StraightRail4/18322"]
+shape = SubResource("BoxShape3D_u386t")
+
+[node name="18324" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_81r3l")
+
+[node name="18323" type="CollisionShape3D" parent="Node3D/StraightRail4/18324"]
+shape = SubResource("BoxShape3D_ag1rx")
+
+[node name="42471" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42470" type="CollisionShape3D" parent="Node3D/StraightRail4/42471"]
+shape = SubResource("BoxShape3D_n0do4")
+
+[node name="42473" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42472" type="CollisionShape3D" parent="Node3D/StraightRail4/42473"]
+shape = SubResource("BoxShape3D_uwmug")
+
+[node name="42475" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42474" type="CollisionShape3D" parent="Node3D/StraightRail4/42475"]
+shape = SubResource("BoxShape3D_1iqhi")
+
+[node name="42477" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42476" type="CollisionShape3D" parent="Node3D/StraightRail4/42477"]
+shape = SubResource("BoxShape3D_y83o0")
+
+[node name="42479" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42478" type="CollisionShape3D" parent="Node3D/StraightRail4/42479"]
+shape = SubResource("BoxShape3D_07gli")
+
+[node name="42481" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42480" type="CollisionShape3D" parent="Node3D/StraightRail4/42481"]
+shape = SubResource("BoxShape3D_h23nb")
+
+[node name="42483" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42482" type="CollisionShape3D" parent="Node3D/StraightRail4/42483"]
+shape = SubResource("BoxShape3D_ingeb")
+
+[node name="42485" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42484" type="CollisionShape3D" parent="Node3D/StraightRail4/42485"]
+shape = SubResource("BoxShape3D_s8ct0")
+
+[node name="42487" type="Area3D" parent="Node3D/StraightRail4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_1n3m6")
+
+[node name="42486" type="CollisionShape3D" parent="Node3D/StraightRail4/42487"]
+shape = SubResource("BoxShape3D_3je8y")
+
+[node name="VerticalLoop2" parent="Node3D" instance=ExtResource("4_3gekg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20592, -8.4985)
+diameter = 7.0
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.257)
+
+[node name="HorizontalLoop" parent="." instance=ExtResource("5_08m0p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.8973, 3.19524, -5.16523)
+
+[node name="Camera3D3" type="Camera3D" parent="."]
+transform = Transform3D(-0.890531, -1.88691e-08, -0.454923, -0.217622, 0.878158, 0.426003, 0.399495, 0.47837, -0.782027, -2.23436, 3.38557, -23.2217)
+current = true

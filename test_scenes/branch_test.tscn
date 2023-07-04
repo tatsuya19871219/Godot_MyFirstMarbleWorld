@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv8x2olh2j3hu"]
+
+[ext_resource type="Script" path="res://marble_course_editor.gd" id="1_4eqmb"]
+[ext_resource type="PackedScene" uid="uid://by2dglfce4xhv" path="res://rails/branch.tscn" id="1_q01lm"]
+[ext_resource type="PackedScene" uid="uid://5qj6oarn3o6l" path="res://rails/straight_rail.tscn" id="3_bn2xr"]
+[ext_resource type="Script" path="res://ball_generator.gd" id="6_ygmmp"]
+
+[sub_resource type="Environment" id="Environment_gg03i"]
+background_mode = 1
+background_color = Color(0.905882, 0.937255, 0.870588, 1)
+
+[node name="BranchTest" type="Node"]
+script = ExtResource("1_4eqmb")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.89107, 0.453866, 0, -0.453866, 0.89107, 0, 2.26369, -4.8971)
+current = true
+
+[node name="Camera2" type="Camera3D" parent="."]
+transform = Transform3D(-3.60479e-08, -0.824679, 0.5656, 2.47232e-08, 0.5656, 0.824679, -1, 4.37114e-08, 5.32907e-15, 5.71092, 2.84596, -8.63872)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.26294e-08, -0.221123, 0.975246, -9.66559e-09, 0.975246, 0.221123, -1, 0, -4.37114e-08, 5.55162, 3.72419, 0)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("6_ygmmp")
+
+[node name="Marker3D" type="Marker3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.30187, 2.24622, -9.47085)
+
+[node name="Timer" type="Timer" parent="Node"]
+wait_time = 3.0
+autostart = true
+
+[node name="Straight" parent="." instance=ExtResource("3_bn2xr")]
+transform = Transform3D(0.965925, 0.258819, 0, -0.258819, 0.965925, 0, 0, 0, 1, -2.9754, 0.905863, -9.42528)
+length = 7.0
+
+[node name="BranchRail" parent="." instance=ExtResource("1_q01lm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.405337, -3.57628e-06, -9.42528)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gg03i")

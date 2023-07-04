@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ipvu5bv2st4"]
+
+[ext_resource type="Script" path="res://rails/scripts/curve_rail.gd" id="1_e30dr"]
+
+[node name="CurveRail" type="Node3D"]
+script = ExtResource("1_e30dr")
+metadata/_edit_group_ = true
